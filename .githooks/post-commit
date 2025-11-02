@@ -45,4 +45,14 @@ if [ "$AUTO_CHANGELOG" = "true" ]; then
     fi
 fi
 
+# Auto-sync progress to dashboard (if enabled)
+if [ "$AUTO_PROGRESS_SYNC" = "true" ]; then
+    echo "📊 Auto-syncing progress to dashboard..."
+    if [ -f "C:/devop/.template-system/scripts/sync_project_progress.py" ]; then
+        python C:/devop/.template-system/scripts/sync_project_progress.py \
+            --project-path "$(pwd)" \
+            2>/dev/null || echo "⚠️  Progress sync skipped (enable in hooks-config)"
+    fi
+fi
+
 exit 0
