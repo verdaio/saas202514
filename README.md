@@ -19,6 +19,27 @@ This is a **ready-to-use folder structure and template library** for planning an
 
 ---
 
+## 📖 Essential Guides
+
+**Start here for setup and standards:**
+
+| Guide | Purpose | When to Use |
+|-------|---------|-------------|
+| **[_START-HERE.md](_START-HERE.md)** | First-time project setup | ✅ Read this first! |
+| **[DEVELOPMENT-GUIDE.md](DEVELOPMENT-GUIDE.md)** | Tooling, Docker, diagnostics | When setting up dev environment |
+| **[STYLE-GUIDE.md](STYLE-GUIDE.md)** | Naming conventions, formatting | Before creating files/writing code |
+| **[TESTING-CHECKLIST.md](TESTING-CHECKLIST.md)** | Smoke tests, validation steps | Before committing or deploying |
+| **[CLAUDE.md](CLAUDE.md)** | AI assistant workflows | When working with Claude Code |
+
+**Quick Reference:**
+- 🔧 **Need to install tools?** → [DEVELOPMENT-GUIDE.md](DEVELOPMENT-GUIDE.md#tooling-requirements)
+- 📝 **How to name files?** → [STYLE-GUIDE.md](STYLE-GUIDE.md#file-naming-conventions)
+- 🐳 **Docker not working?** → [DEVELOPMENT-GUIDE.md](DEVELOPMENT-GUIDE.md#infrastructure-diagnostics)
+- ✅ **Pre-commit checklist?** → [TESTING-CHECKLIST.md](TESTING-CHECKLIST.md#pre-commit-checklist)
+- 📁 **What gets committed?** → [.gitignore](.gitignore) (see comments at top)
+
+---
+
 ## 📁 Repository Structure
 
 ```

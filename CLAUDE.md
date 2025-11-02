@@ -23,10 +23,43 @@ This file provides guidance to Claude Code (claude.ai/code) when working with th
 
 ---
 
+## 📖 Essential Project Guides
+
+**Before starting any work, familiarize yourself with these guides:**
+
+| Guide | Purpose | Reference When |
+|-------|---------|----------------|
+| **DEVELOPMENT-GUIDE.md** | Tooling requirements, Docker setup, diagnostics | Setting up environment, troubleshooting infrastructure |
+| **STYLE-GUIDE.md** | File naming, code style, formatting standards | Creating files, writing code, naming conventions |
+| **TESTING-CHECKLIST.md** | Pre-commit checks, smoke tests, validation | Before commits, before deployment |
+| **.gitignore** | What gets committed vs ignored | Understanding generated files policy |
+
+**Key Standards:**
+- **Tooling:** Node.js 18+, npm 9+, Docker Compose v2+, Azure CLI 2.60+ (see DEVELOPMENT-GUIDE.md)
+- **File Naming:** Varies by directory - UPPER-KEBAB for quick-reference/, kebab-case for templates (see STYLE-GUIDE.md)
+- **Generated Files:** Commit `.docx` in fundraising/, ignore `.pdf` exports (see .gitignore comments)
+- **Code Style:** Follow `C:\devop\coding_standards.md` - 2-space indentation for JS/YAML/JSON, camelCase for JS, snake_case for Python
+- **Testing:** Run `npm run lint && npm test && npm run build` before commits (see TESTING-CHECKLIST.md)
+
+**Quick Diagnostics:**
+```bash
+# Validate Docker Compose changes
+docker compose config
+
+# Check service health
+docker compose ps
+docker compose logs -f [service]
+
+# Pre-commit validation
+npm run lint && npm test && npm run build
+```
+
+---
+
 ## 🏢 Multi-Tenant Architecture
 
-**Multi-Tenant Enabled:** true
-**Tenant Model:** subdomain
+**Multi-Tenant Enabled:** {{MULTI_TENANT_ENABLED}}
+**Tenant Model:** {{TENANT_MODEL}}
 
 ### Important Considerations
 
@@ -44,17 +77,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with th
 
 ## 🎯 IMPORTANT: First-Time Project Detection
 
-**Project ID:** saas202514
-**Created:** 2025-11-02
+**Project ID:** {{PROJECT_NAME}}
+**Created:** {{CREATION_DATE}}
 **Status:** active
 
 ### First Time Opening This Project?
 
-**IMPORTANT:** You are the project assistant for saas202514, NOT the template system manager.
+**IMPORTANT:** You are the project assistant for {{PROJECT_NAME}}, NOT the template system manager.
 
 **If `_START-HERE.md` exists and user hasn't greeted yet:**
 
-Proactively greet: "👋 Welcome to saas202514! I see this is a new project. Would you like help getting started? I can walk you through creating your roadmap, sprint plan, and OKRs. Just say 'yes' or 'help me get started'!"
+Proactively greet: "👋 Welcome to {{PROJECT_NAME}}! I see this is a new project. Would you like help getting started? I can walk you through creating your roadmap, sprint plan, and OKRs. Just say 'yes' or 'help me get started'!"
 
 **When user responds positively, FIRST ask about setup mode:**
 
@@ -317,7 +350,7 @@ npx claude-code-templates@latest --command testing/generate-tests
 2. Ask: feature name, target users, problem to solve
 3. Read `product/prd-template.md`
 4. Guide through sections (Problem, Solution, Success Metrics)
-5. **If multi-tenant (true==true):** Add multi-tenant considerations section
+5. **If multi-tenant ({{MULTI_TENANT_ENABLED}}==true):** Add multi-tenant considerations section
 6. Create PRD in `product/PRDs/`
 7. Link to roadmap and relevant sprints
 
@@ -367,7 +400,7 @@ npx claude-code-templates@latest --command testing/generate-tests
 1. Ask: What are you designing?
 2. Read existing `technical/adr/` for context
 3. Use `technical/adr-template.md` for decisions
-4. **If multi-tenant (true==true):** Reference `technical/multi-tenant-architecture.md` and ensure tenant isolation is considered
+4. **If multi-tenant ({{MULTI_TENANT_ENABLED}}==true):** Reference `technical/multi-tenant-architecture.md` and ensure tenant isolation is considered
 5. Create ADR documenting choice and alternatives
 6. Update tech specs if needed
 
@@ -434,7 +467,7 @@ npx claude-code-templates@latest --command testing/generate-tests
 1. Determine doc type (API, runbook, process, architecture)
 2. Use appropriate template
 3. For code docs: analyze code structure first
-4. **If multi-tenant (true==true):** Ensure API docs show tenant scoping in examples
+4. **If multi-tenant ({{MULTI_TENANT_ENABLED}}==true):** Ensure API docs show tenant scoping in examples
 5. Create in relevant folder (technical/, workflows/)
 6. Link to related docs
 
@@ -712,11 +745,11 @@ pkill -f analytics
 
 ```powershell
 # Windows - Kill by specific port
-netstat -ano | findstr :3014
+netstat -ano | findstr :{{PROJECT_PORT_FRONTEND}}
 taskkill /F /PID <specific-PID>
 
 # Mac/Linux - Kill by specific port
-kill $(lsof -ti:3014)
+kill $(lsof -ti:{{PROJECT_PORT_FRONTEND}})
 
 # Docker - Stop only this project's containers
 docker-compose down  # NOT: docker stop $(docker ps -aq)
@@ -725,7 +758,7 @@ docker-compose down  # NOT: docker stop $(docker ps -aq)
 **Golden Rule:** Always target processes by:
 - ✅ Specific PID (from netstat/lsof)
 - ✅ Specific port number (this project's ports only)
-- ✅ Specific container name (`saas202514-postgres`)
+- ✅ Specific container name (`{{PROJECT_NAME}}-postgres`)
 
 **Never target by:**
 - ❌ Process name (`/IM node.exe`)
@@ -833,13 +866,13 @@ echo "✅ Changes committed and pushed to GitHub"
 
 ```bash
 # After creating roadmap
-cd /c/devop/saas202514
+cd /c/devop/{{PROJECT_NAME}}
 git add .
 git commit -m "docs: add initial product roadmap and sprint 1 plan"
 git push origin master
 ```
 
-**Tell user:** "✅ Documentation saved and pushed to GitHub at https://github.com/ChrisStephens1971/saas202514"
+**Tell user:** "✅ Documentation saved and pushed to GitHub at https://github.com/ChrisStephens1971/{{PROJECT_NAME}}"
 
 ### Error Handling
 
@@ -854,13 +887,20 @@ If push fails:
 
 ## 🔗 Additional Resources
 
-All detailed guides are in `.config/`:
+**Essential Project Guides (in project root):**
+- **DEVELOPMENT-GUIDE.md** - Tooling requirements, Docker setup, infrastructure diagnostics
+- **STYLE-GUIDE.md** - File naming conventions, code style, formatting standards
+- **TESTING-CHECKLIST.md** - Pre-commit checks, smoke tests, deployment validation
+- **.gitignore** - Generated files policy (see comments at top)
+- **C:\devop\coding_standards.md** - Comprehensive coding standards (Google Style Guides)
+
+**Integration Guides (in `.config/`):**
 - **claude-code-templates-guide.md** - Claude Code Templates (recommended for development)
 - **recommended-claude-skills.md** - Claude Skills setup and workflows
 - **INTEGRATIONS.md** - Complete integration guide
 - **claudepro-directory-guide.md** - ClaudePro.directory reference
 
-Advanced specialists:
+**Advanced Specialists:**
 - **docs/advanced/SPECIALIZED-TOOLS.md** - Framework specialists, payments, AI features
 
 **Project tracking:**
@@ -880,4 +920,4 @@ Advanced specialists:
 ---
 
 **Template Version:** 1.0
-**Last Updated:** 2025-11-02
+**Last Updated:** {{CREATION_DATE}}
