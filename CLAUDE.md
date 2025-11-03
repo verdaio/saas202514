@@ -23,6 +23,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with th
 
 ---
 
+## 📏 Documentation Standards
+
+### ⚠️ CRITICAL: File Length Guideline
+
+**Target: Keep all documentation files under 650 lines**
+
+**Why this matters:**
+- Easier to read and navigate
+- Faster to load and process
+- Better for maintainability
+- Forces clarity and conciseness
+
+**Exceptions (comprehensive guides allowed to exceed):**
+- ✅ `CLAUDE.md` (this file - comprehensive project guidance)
+- ✅ `DEVELOPMENT-GUIDE.md` (complete tooling and setup)
+- ✅ `STYLE-GUIDE.md` (exhaustive style reference)
+- ✅ `MCP-SETUP-GUIDE.md` (complete MCP documentation)
+- ✅ Tutorial/training documents
+
+**For all other documentation:**
+- ❌ PRDs, sprint plans, ADRs, meeting notes
+- ❌ API specs, tech specs, test plans
+- ❌ Product roadmaps, OKRs, user research
+
+**If a doc exceeds 650 lines:**
+1. Split into multiple focused documents
+2. Create a parent doc with links to child docs
+3. Move detailed sections to separate files
+4. Keep main doc as overview/index
+
+**Example:**
+```
+# Bad: Single 900-line API spec
+api-spec.md (900 lines)
+
+# Good: Split into focused docs
+api-spec.md (150 lines - overview)
+api-spec-authentication.md (200 lines)
+api-spec-user-endpoints.md (180 lines)
+api-spec-payment-endpoints.md (220 lines)
+```
+
+---
+
 ## 📖 Essential Project Guides
 
 **Before starting any work, familiarize yourself with these guides:**
@@ -550,8 +594,6 @@ npx claude-code-templates@latest --command testing/generate-tests
 - Templates: `*-template.md` suffix
 - Examples: `example-*.md` prefix
 - Drafts: `/drafts/` subfolder
-
-**Target: <650 lines per file** (comprehensive guides excepted)
 
 **Writing Style:**
 - Direct, actionable, honest
