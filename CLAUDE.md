@@ -615,31 +615,28 @@ Our standards are based on Google's Style Guides and prioritize:
 
 ## 🔌 MCP Integration (Optional)
 
-**MCP servers are NOT pre-configured, but we've made setup easy.**
+**MCPs are optional helpers for development.** They let Claude access external services like GitHub, Stripe, and databases while helping you build.
 
-This project includes a sample MCP configuration template to help you set up external service integrations.
+**Important:** MCP tokens are for development only (helping YOU build), not for your production application.
 
 ### Quick Setup (5 Minutes)
 
-**Files included:**
-- `.mcp-config-template.json` - Sample configuration with popular MCPs
-- `MCP-SETUP-GUIDE.md` - Complete setup instructions
+**Recommended approach:** Shared tokens (all projects use same tokens)
 
-**Recommended MCPs for SaaS:**
-- ⭐ **GitHub** - Manage repos, issues, PRs (start here)
-- ⭐ **Filesystem** - Claude can read/write project files
-- ⭐ **Memory** - Context persistence across sessions
-- **PostgreSQL** - Database queries and schema management
-- **Stripe** - Payment processing integration
-- **Notion** - Documentation access
-
-**To get started:**
 1. Get a GitHub token: https://github.com/settings/tokens
-2. Copy `.mcp-config-template.json` to your Claude Desktop config
-3. Replace `<your-github-token>` with your actual token
-4. Restart Claude Desktop
+2. Open Claude Desktop config: `%APPDATA%\Claude\claude_desktop_config.json`
+3. Copy contents from `.mcp-config-template.json` in this project
+4. Replace `<your-github-token>` with actual token
+5. Restart Claude Desktop
+6. Test: Ask Claude "List my GitHub repositories"
 
-**Full instructions:** See `MCP-SETUP-GUIDE.md` for complete step-by-step guide with all MCPs, troubleshooting, and security best practices.
+**Recommended MCPs:**
+- ⭐ **GitHub** - Manage repos, issues, PRs (start here)
+- **Filesystem** - Claude can read/write project files
+- **PostgreSQL** - Database queries
+- **Stripe** - Payment data access
+
+**Complete guide:** See `MCP-SETUP-GUIDE.md` for detailed instructions, security best practices, and advanced per-project token isolation.
 
 ---
 

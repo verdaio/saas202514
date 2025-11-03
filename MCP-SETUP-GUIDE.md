@@ -15,7 +15,9 @@ MCP (Model Context Protocol) servers give Claude access to external services lik
 
 ---
 
-## ⚡ Quick Setup (5 Minutes)
+## ⚡ Quick Setup (5 Minutes) - Recommended for Most Users
+
+**This is the simplest approach:** All your projects share the same MCP tokens. Perfect for solo developers!
 
 ### Step 1: Get Your API Keys
 
@@ -78,6 +80,22 @@ Open Claude and try:
 - "List my GitHub repositories"
 - "What files are in this project?" (filesystem)
 - "Query the users table" (if Postgres configured)
+
+---
+
+## 💡 Important: MCP Tokens Are for Development Only
+
+**What MCP tokens are:**
+- Used by Claude Desktop on your local machine to help you develop
+- Help Claude read your repos, check Stripe data, query databases
+- Only used during development, never in production
+
+**What they're NOT:**
+- NOT your application's production credentials
+- NOT used by your deployed SaaS application
+- NOT required for Claude to write code or create plans
+
+**Most solo developers can use shared tokens** (the Quick Setup above) since these are just development helpers.
 
 ---
 
@@ -291,6 +309,87 @@ A: Only slightly when actively querying external services.
 
 **Q: Can I uninstall an MCP?**
 A: Yes, just remove it from claude_desktop_config.json and restart Claude Desktop.
+
+---
+
+## 🔧 Advanced: Per-Project Token Management (Optional)
+
+**Most users don't need this.** The shared tokens approach (Quick Setup above) works great for solo developers.
+
+**Use per-project tokens if:**
+- Working with multiple clients (isolate client work)
+- Team members need different access levels
+- Some projects need production keys, others need test keys
+- Security isolation is a priority
+
+### Why Per-Project Tokens?
+
+**Benefits:**
+- ✅ Isolate tokens per project (different projects = different tokens)
+- ✅ Easier to rotate tokens without affecting all projects
+- ✅ Different GitHub accounts or permissions per project
+- ✅ Tokens stay in `.env.local` (already gitignored)
+
+**Trade-offs:**
+- ⚠️ More setup per project
+- ⚠️ Must load tokens when switching projects
+- ⚠️ More maintenance (multiple token sets)
+
+### Quick Setup
+
+**Step 1: Add tokens to project's `.env.local`:**
+
+```bash
+# {{PROJECT_PATH}}\.env.local
+GITHUB_TOKEN=ghp_project_specific_token_here
+STRIPE_API_KEY=sk_test_project_specific_key_here
+POSTGRES_CONNECTION_STRING=postgresql://user:pass@localhost:5432/dbname
+```
+
+**Step 2: Update Claude Desktop config to use environment variables:**
+
+```json
+{
+  "mcpServers": {
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    }
+  }
+}
+```
+
+**Note:** Use `${VAR_NAME}` syntax instead of hardcoded tokens.
+
+**Step 3: Load tokens before opening Claude:**
+
+**Windows:**
+```powershell
+cd C:\devop\.template-system\scripts
+.\load-project-env.ps1 -ProjectName {{PROJECT_NAME}}
+```
+
+**Mac/Linux:**
+```bash
+export $(cat .env.local | xargs)
+```
+
+**Step 4: Restart Claude Desktop**
+
+### Switching Between Projects
+
+```powershell
+# Load different project's tokens
+.\load-project-env.ps1 -ProjectName saas202513
+
+# Restart Claude Desktop
+# Now using saas202513's tokens
+```
+
+**Full documentation:** See `.config/PROJECT-TOKEN-MANAGEMENT.md` for complete guide, troubleshooting, and advanced options.
 
 ---
 
