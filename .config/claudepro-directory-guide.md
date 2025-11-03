@@ -67,7 +67,6 @@ Catalog of MCP server configurations
 - Stripe MCP Server
 - GitHub MCP Server
 - PostgreSQL MCP Server
-- Linear MCP Server
 - Notion MCP Server
 - AWS Services MCP Server
 
@@ -170,8 +169,8 @@ Custom instruction sets for Claude
 
 If you need to integrate external services:
 ```
-Example: Want to integrate Linear?
-1. Visit https://claudepro.directory/mcp/linear-mcp-server
+Example: Want to integrate Stripe for payments?
+1. Visit https://claudepro.directory/mcp/stripe-mcp-server
 2. Follow installation guide
 3. Add configuration to your project
 ```
@@ -323,7 +322,6 @@ Solution: Copy their hook script → Add to project
 
 **Essential for SaaS Projects:**
 - Stripe MCP Server (payments)
-- Linear MCP Server (project management)
 - GitHub MCP Server (repository management)
 - PostgreSQL MCP Server (database access)
 - Notion MCP Server (documentation)
@@ -331,8 +329,8 @@ Solution: Copy their hook script → Add to project
 
 **Installation Pattern:**
 ```bash
-# Example: Linear MCP Server
-npm install @modelcontextprotocol/server-linear
+# Example: Stripe MCP Server
+npm install @modelcontextprotocol/server-stripe
 
 # Configure in project
 # Then access from Claude Code
@@ -528,7 +526,7 @@ Example: Improve QA Testing Agent
 
 2. **Mine for MCP servers** (as needed)
    ```
-   When you need Stripe, Linear, GitHub, etc.
+   When you need Stripe, GitHub, Notion, etc.
    Follow their guides for setup
    ```
 
