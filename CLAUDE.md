@@ -615,29 +615,31 @@ Our standards are based on Google's Style Guides and prioritize:
 
 ## 🔌 MCP Integration (Optional)
 
-**MCP servers are NOT pre-configured in this project.** They can be installed as needed.
+**MCP servers are NOT pre-configured, but we've made setup easy.**
 
-MCP (Model Context Protocol) servers provide specialized capabilities for external service integration. Common examples include:
-- Stripe MCP - Payment processing
-- GitHub MCP - Repository management
-- PostgreSQL MCP - Database access
-- Notion MCP - Documentation access
-- Vercel MCP - Deployment management
+This project includes a sample MCP configuration template to help you set up external service integrations.
 
-**To install an MCP server:**
-1. Find the MCP you need (check [MCP Registry](https://github.com/modelcontextprotocol/servers) or Claude docs)
-2. Follow installation instructions for your specific MCP
-3. Configure in your Claude desktop app or MCP config file
+### Quick Setup (5 Minutes)
 
-**When to consider installing an MCP:**
-- Need to access external APIs or services
-- Require specialized data sources
-- Want to automate integrations with tools you use
+**Files included:**
+- `.mcp-config-template.json` - Sample configuration with popular MCPs
+- `MCP-SETUP-GUIDE.md` - Complete setup instructions
 
-**When NOT needed:**
-- Simple questions answerable without external data
-- Core development work (use built-in Claude Code features)
-- When direct API calls are simpler
+**Recommended MCPs for SaaS:**
+- ⭐ **GitHub** - Manage repos, issues, PRs (start here)
+- ⭐ **Filesystem** - Claude can read/write project files
+- ⭐ **Memory** - Context persistence across sessions
+- **PostgreSQL** - Database queries and schema management
+- **Stripe** - Payment processing integration
+- **Notion** - Documentation access
+
+**To get started:**
+1. Get a GitHub token: https://github.com/settings/tokens
+2. Copy `.mcp-config-template.json` to your Claude Desktop config
+3. Replace `<your-github-token>` with your actual token
+4. Restart Claude Desktop
+
+**Full instructions:** See `MCP-SETUP-GUIDE.md` for complete step-by-step guide with all MCPs, troubleshooting, and security best practices.
 
 ---
 
