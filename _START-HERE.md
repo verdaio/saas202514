@@ -33,7 +33,13 @@ This project has been created with a complete planning and documentation structu
 
 **Have a project brief ready?**
 
-Open `project-brief.md` and paste your vision, or skip this - Claude will ask you questions.
+Add files to the `project-brief/` directory:
+- `project-brief/brief.md` - Main project vision
+- `project-brief/vision.md` - Long-term vision
+- `project-brief/target-users.md` - User personas
+- Or any other `.md` files - Claude will read them all!
+
+Or skip this - Claude will ask you questions.
 
 ### 3. Start Planning
 
@@ -156,6 +162,7 @@ A beginner-friendly guide is available:
 
 ---
 
+## 🔍 Project Health Check**Want to verify your project setup is correct?**This project includes a validation script to check project health:```bashcd C:\devopsaas202514python scriptsalidator.py```**What it checks:**- ✅ No unreplaced template placeholders- ✅ Git repository initialized- ✅ GitHub remote configured- ✅ Required files present (CLAUDE.md, README.md, .gitignore)- ✅ Directory structure complete- ✅ VS Code workspace file exists**When to run:**- After initial project setup- Before deploying to production- When troubleshooting project issues- After making major structural changes---
 ## ❓ Questions?
 
 Just ask Claude - it's here to help! Say "help me get started" to begin.

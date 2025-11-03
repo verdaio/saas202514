@@ -143,20 +143,38 @@ Which would you prefer? (A/B or quick/detailed)"
 - Scaling team or infrastructure
 - Adding governance and process
 
-### Step 0: Ask About Project Brief (Optional)
+### Step 0: Check Project Brief Directory
 
-**Always ask first:**
-"Do you have an initial project brief, vision statement, or prompt you'd like to share? You can paste it here and I'll save it to `project-brief.md` for reference throughout planning. (If not, just say 'no' or 'skip' and I'll ask you questions instead.)"
+**The `project-brief/` directory contains all project vision files.**
 
-**If user provides content in chat:**
-1. Write it to `project-brief.md`
-2. Confirm: "Great! I've saved that to project-brief.md. I'll use this context for planning."
-3. Use this information to inform all planning questions
-4. Reference specific details when creating documents
+**On first interaction, Claude should:**
 
-**If user says no/skip or project-brief.md already has content:**
-- Read `project-brief.md` if it has content (user may have added it manually)
-- Otherwise, proceed with discovery questions normally
+1. **Check for existing files:**
+   ```bash
+   # Use Glob tool to find all .md files
+   ls project-brief/*.md
+   ```
+
+2. **Read ALL .md files found (except README.md):**
+   - Read every `.md` file in `project-brief/` directory
+   - This automatically includes `brief.md`, `vision.md`, `target-users.md`, etc.
+   - User can add as many files as they want
+   - Skip `README.md` (instructions, not content)
+
+3. **If files exist:**
+   - Use all content to inform planning
+   - Reference specific details when creating documents
+   - Don't ask user to repeat information already in the files
+
+4. **If no files exist or files are empty:**
+   - Ask: "Do you have an initial project brief or vision you'd like to share? You can paste it here and I'll save it to `project-brief/brief.md`."
+   - **If user provides content:** Write to `project-brief/brief.md`
+   - **If user says no/skip:** Proceed with discovery questions
+
+**Throughout the session:**
+- Reference project brief content when making decisions
+- User can add more files anytime (vision.md, competitive-analysis.md, etc.)
+- Claude will read new files when mentioned or when doing Task tool exploration
 
 ### Step 1: Discovery Questions (Ask ALL of these)
 
