@@ -12,7 +12,7 @@
 
 ```bash
 # Pull latest changes
-git pull origin master
+git pull origin main
 
 # Check status
 git status
@@ -40,10 +40,10 @@ git commit -m "feat(feature-name): add description"
 
 ```bash
 # Push to remote
-git push origin master
+git push origin main
 
 # Push after force-push conflict
-git push origin master --force-with-lease  # Safer than --force
+git push origin main --force-with-lease  # Safer than --force
 ```
 
 ---
@@ -110,10 +110,10 @@ git commit -m "feat(feature): add functionality"
 # Push feature branch
 git push origin feature/new-feature
 
-# Merge to master
-git checkout master
+# Merge to main
+git checkout main
 git merge feature/new-feature
-git push origin master
+git push origin main
 
 # Delete feature branch
 git branch -d feature/new-feature
@@ -129,10 +129,10 @@ git checkout -b hotfix/critical-bug
 # Fix and commit
 git commit -m "fix(critical): prevent data loss"
 
-# Merge to master
-git checkout master
+# Merge to main
+git checkout main
 git merge hotfix/critical-bug
-git push origin master
+git push origin main
 ```
 
 ---
@@ -244,7 +244,7 @@ git remote -v
 git fetch origin
 
 # Pull changes (fetch + merge)
-git pull origin master
+git pull origin main
 
 # Pull with rebase (cleaner history)
 git pull --rebase origin master
@@ -254,13 +254,13 @@ git pull --rebase origin master
 
 ```bash
 # Push to remote
-git push origin master
+git push origin main
 
 # Force push (CAREFUL!)
-git push origin master --force
+git push origin main --force
 
 # Safer force push
-git push origin master --force-with-lease
+git push origin main --force-with-lease
 
 # Push new branch
 git push -u origin feature/new-feature
@@ -460,7 +460,7 @@ git cherry-pick --no-commit abc123
 ### Rebase
 
 ```bash
-# Rebase current branch onto master
+# Rebase current branch onto main
 git rebase master
 
 # Interactive rebase (last 5 commits)
@@ -512,7 +512,7 @@ Add to `.gitconfig`:
 Usage:
 ```bash
 git st  # git status
-git co master  # git checkout master
+git co master  # git checkout main
 git lg  # Pretty log
 ```
 
@@ -530,8 +530,8 @@ git commit -m "feat(feature): add functionality"
 git push origin feature/new-feature
 # Create PR on GitHub
 # After merge:
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 git branch -d feature/new-feature
 ```
 
@@ -552,7 +552,7 @@ git push origin fix/bug-name
 # Update package.json or requirements.txt
 git add package.json
 git commit -m "build: upgrade package to version"
-git push origin master
+git push origin main
 ```
 
 ---
@@ -614,11 +614,11 @@ gh pr merge 123
 
 ```bash
 # Daily workflow
-git pull origin master    # Start work
+git pull origin main    # Start work
 git status               # Check changes
 git add .                # Stage all
 git commit -m "type: msg"  # Commit
-git push origin master   # Push
+git push origin main   # Push
 
 # Branching
 git checkout -b feature/name  # Create branch
